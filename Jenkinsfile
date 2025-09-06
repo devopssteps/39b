@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/rajivsiddiqui/helm-jenkins-k8s-nodejs.git'
+                git branch: 'main', url: 'https://github.com/devopssteps/39b.git'
             }
         }
 
@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy to Kubernetes via Helm') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: 'minikube-kubeconfig', variable: 'KUBECONFIG')]) {
+                    withCredentials([file(credentialsId: 'minikube-kubeconfig1', variable: 'KUBECONFIG')]) {
                         sh """
                             kubectl config use-context minikube
                             helm upgrade --install $HELM_RELEASE ./nodejs-app \
